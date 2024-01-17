@@ -101,8 +101,3 @@ func (c Confidence) Calculate() {
 	}
 	fmt.Printf("%s,\"current_price\": %.2f}\n", c.Results, c.end)
 }
-
-func main() {
-	c := Confidence{}
-	c.Calculate()
-}
