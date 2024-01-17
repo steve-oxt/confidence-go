@@ -1,4 +1,4 @@
-package main
+package confidence
 
 import (
 	"fmt"
@@ -64,7 +64,6 @@ func (c *Confidence) setArrays() {
 	c.percentage = []float64{0.01, 0.025, 0.05, 0.10, 1.00, 2.00, 4.00}
 	c.pretty_percentage = []string{"one_percent", "two_percent", "five_percent", "ten_percent", "one_hundred_percent", "two_hundred_percent", "four_hundred_percent"}
 }
-
 
 func (c Confidence) Calculate() {
 	if !c.validated {
