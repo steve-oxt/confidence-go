@@ -72,7 +72,6 @@ func (c Confidence) Calculate() {
 	} else {
 		c.setArrays()
 	}
-	rand.Seed(time.Now().UnixNano())
 	c.current = c.start
 	for i := 0; i < 1000; i++ {
 		for j := 0; j < c.tests; j++ {
