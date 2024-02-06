@@ -65,14 +65,22 @@ func (c *Confidence) setArrays() {
 	c.pretty_percentage = []string{"one_percent", "two_percent", "five_percent", "ten_percent", "one_hundred_percent", "two_hundred_percent", "four_hundred_percent"}
 }
 
-func (c *Confidence) New(rate float64, start float64, previous float64, current float64, interval float64, end float64, tests int) {
+func (c *Confidence) New(ticks float64, seconds float64, start_time float64, end_time float64, rate float64, start float64, previous float64, interval float64, end float64) {
+	t := start_time
+    if start_time == 0 {
+        t = float64(time.Now().Unix())
+    }
+	et := end_time
+    if end_time == 0 {
+        et = float64(time.Date(time.Now().Year(), time.Now().Month(), time.Now().Day(), 20, 0, 0, 0, time.UTC).Unix())
+    }
 	c.rate = rate
 	c.start = start
 	c.previous = previous
-	c.current = current
+	c.current = start
 	c.interval = interval
 	c.end = end
-	c.tests = tests
+	c.tests = int((float64(et) - float64(t)) / seconds * ticks)
 }
 
 func (c *Confidence) Calculate() {
