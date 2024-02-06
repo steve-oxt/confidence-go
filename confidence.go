@@ -65,7 +65,17 @@ func (c *Confidence) setArrays() {
 	c.pretty_percentage = []string{"one_percent", "two_percent", "five_percent", "ten_percent", "one_hundred_percent", "two_hundred_percent", "four_hundred_percent"}
 }
 
-func (c Confidence) Calculate() {
+func (c *Confidence) New(rate float64, start float64, previous float64, current float64, interval float64, end float64, tests int) {
+	c.rate = rate
+	c.start = start
+	c.previous = previous
+	c.current = current
+	c.interval = interval
+	c.end = end
+	c.tests = tests
+}
+
+func (c *Confidence) Calculate() {
 	if !c.validated {
 		c.validate()
 	} else {
